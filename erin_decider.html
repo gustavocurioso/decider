@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Decider</title>
+        <link href="erin_decider_style.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald" rel="stylesheet">
+        <script type="text/javascript">
+            function decide() {
+                erin = document.getElementById("Erin").value;
+                gustavo = document.getElementById("Gustavo").value;
+                random_boy = Math.floor(Math.random() * 1000000);
+                count = 1;
+                while (random_boy != 36) {
+                    count++;
+                    random_boy = Math.floor(Math.random() * 1000000);
+                }
+                document.getElementById("result_boy").innerHTML = closer(erin, gustavo, count) + " wins!";
+            }
+
+            function closer(erin, gustavo, count) {
+                erin = count - erin;
+                gustavo = count - gustavo;
+
+                if (Math.abs(erin) < Math.abs(gustavo))
+                    return "Erin";
+                else if (Math.abs(erin) > Math.abs(gustavo))
+                    return "Gustavo";
+                else
+                    return "No one";
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Decider</h1>
+        <form>
+            <input id="Erin" class="input_boy" type="number" placeholder="Erin" min="1" step="1"><br /><br />
+            <input id="Gustavo" class="input_boy" type="number" placeholder="Gustavo" min="1" step="1"><br /><br />
+        </form>
+        <button onclick="decide()"><strong>Decide!</strong></button>
+        <div id="result_boy">&nbsp</div>
+    </body>
+</html>
